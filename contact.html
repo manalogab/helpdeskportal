@@ -1,0 +1,118 @@
+<div class="contact-container">
+  <h1>Contact the Help Desk</h1>
+
+  <div class="contact-grid">
+    <!-- Contact Form -->
+    <div class="form-section">
+      <h2>Submit a Support Request</h2>
+      <form #contactFormRef="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Full Name <strong class="asterisk">*</strong></label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            [(ngModel)]="contactForm.name"
+            required
+            class="form-control"
+            placeholder="Enter your full name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address <strong class="asterisk">*</strong></label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="contactForm.email"
+            required
+            class="form-control"
+            placeholder="example@email.com"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Request Category</label>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            [(ngModel)]="contactForm.subject"
+            class="form-control"
+            placeholder="General Inquiry, Technical Issue, Feedback"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Request Details <strong class="asterisk">*</strong></label>
+          <textarea
+            id="message"
+            name="message"
+            [(ngModel)]="contactForm.message"
+            required
+            class="form-control"
+            rows="5"
+            placeholder="Describe your issue or question..."
+          ></textarea>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn btn-primary">Send Request</button>
+          <button type="button" class="btn btn-secondary" (click)="resetForm()">Clear</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Form Preview -->
+    <div class="preview-section">
+      <h2>Live Form Preview</h2>
+
+      <div
+        *ngIf="!submitted && !contactForm.name && !contactForm.email && !contactForm.message"
+        class="preview-empty"
+      >
+        <p>Enter your information to preview your request before submitting.</p>
+      </div>
+
+      <div
+        *ngIf="contactForm.name || contactForm.email || contactForm.message"
+        class="preview-content"
+      >
+        <div class="preview-item" *ngIf="contactForm.name">
+          <strong>Name:</strong>
+          <span>{{ contactForm.name | uppercase }}</span>
+        </div>
+
+        <div class="preview-item" *ngIf="contactForm.email">
+          <strong>Email:</strong>
+          <span>{{ contactForm.email | lowercase }}</span>
+        </div>
+
+        <div class="preview-item" *ngIf="contactForm.subject">
+          <strong>Category:</strong>
+          <span>{{ contactForm.subject }}</span>
+        </div>
+
+        <div class="preview-item" *ngIf="contactForm.message">
+          <strong>Details:</strong>
+          <p class="message-preview">{{ contactForm.message }}</p>
+        </div>
+
+        <div class="character-count" *ngIf="contactForm.message">
+          <small>Character Count: {{ contactForm.message.length }}</small>
+        </div>
+      </div>
+
+      <div *ngIf="submitted" class="success-message">
+        <h3>Request Sent!</h3>
+        <p>
+          Thank you,
+          <strong>{{ contactForm.name | uppercase }}</strong>.
+        </p>
+        <p>Your request has been received. A response will be sent to:</p>
+        <p class="email-confirm">{{ contactForm.email | lowercase }}</p>
+      </div>
+    </div>
+  </div>
+</div>

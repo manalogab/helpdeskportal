@@ -1,0 +1,39 @@
+<div class="about-container">
+  <h1>{{ 'About the Community Help Desk' | uppercase }}</h1>
+
+  <div class="info-section">
+    <p class="date-display">
+      Portal status as of: {{ currentDate | date:'medium' }}
+    </p>
+
+    <div class="description">
+      <h3>Overview</h3>
+      <p>
+        The Community Help Desk Portal is a single-page Angular application designed to help
+        users browse service announcements and support tickets. The system retrieves live
+        data from a remote JSON API and presents it in an organized, user-friendly format.
+      </p>
+
+      <h3>Purpose</h3>
+      <p>
+        This portal demonstrates core Angular concepts including routing, shared services,
+        observables, and pipes. It allows users to navigate between pages, view updates,
+        search services, and interact with form-based content.
+      </p>
+
+      <h3>Application Features</h3>
+      <ul class="features-list">
+        <li *ngFor="let feature of features">{{ feature }}</li>
+      </ul>
+
+      <h3>How to Use</h3>
+      <p>
+        Use the navigation bar above to explore the portal. Visit the
+        <strong><a href="/services">Services</a></strong> page to view all service records,
+        or the <strong><a href="/home">Home</a></strong> page to see the most recent updates.
+        If you need assistance, head over to the
+        <strong><a href="/contact">Contact</a></strong> page.
+      </p>
+    </div>
+  </div>
+</div>

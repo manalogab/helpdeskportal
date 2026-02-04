@@ -1,0 +1,35 @@
+<div class="services-container">
+  <h1>Service Requests & Announcements</h1>
+  <p class="count-info">
+    Total records available: {{ totalCount$ | async }}
+  </p>
+
+  <div class="search-box">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchChange($event)"
+      placeholder="Search by keyword (title or message)..."
+      class="search-input"
+    />
+  </div>
+
+  <div class="posts-grid">
+    <div *ngFor="let post of filteredPosts$ | async; let i = index" class="post-card">
+      <div class="post-header">
+        <span class="ticket-id">Record ID: {{ post.id }}</span>
+        <span class="user-badge">Submitted by User {{ post.userId }}</span>
+      </div>
+
+      <h3>
+        {{ post.title | slice:0:50 }}{{ post.title.length > 50 ? '...' : '' }}
+      </h3>
+
+      <p>{{ post.body | truncate:120 }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="(filteredPosts$ | async)?.length === 0" class="no-results">
+    No matching records were found. Try adjusting your search terms.
+  </div>
+</div>

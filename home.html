@@ -1,0 +1,17 @@
+<div class="home-container">
+  <h1>Community Help Desk Portal</h1>
+  <h3 class="sub">Recent Service Updates</h3>
+  <p class="date-info">
+    Data last refreshed on: {{ currentDate | date:'medium' }}
+  </p>
+
+  <div class="posts-container">
+    <div *ngFor="let post of latestPosts$ | async" class="post-card">
+      <h3>{{ post.title | uppercase }}</h3>
+      <p>{{ post.body | truncate:150 }}</p>
+      <small>
+        Reference ID: {{ post.id }} • Submitted by User {{ post.userId }}
+      </small>
+    </div>
+  </div>
+</div>
